@@ -50,19 +50,19 @@ AXIS_TO_DIR = {
     (1,   0): 'NE',
     (0,  -1): 'NW'
 }
-AXIS_TO_DIR_EPS = 0.4
+AXIS_TO_DIR_EPS = 0.1
 RIGHT_STICK_UPDATE_INTERVAL_MSEC = 200
-LEFT_STICK_UPDATE_INTERVAL_MSEC = 100
+LEFT_STICK_UPDATE_INTERVAL_MSEC = 10
 KEY_MAP = {
     'LEFT_STICK': {
-        'S': 'control_z',
-        'N': 'control_e',
-        'W': 'control_q',
-        'E': 'control_c',
-        'SW': 'control_a',
-        'SE': 'control_x',
-        'NE': 'control_d',
-        'NW': 'control_w'
+        'S': 'z',
+        'N': 'e',
+        'W': 'q',
+        'E': 'c',
+        'SW': 'a',
+        'SE': 'x',
+        'NE': 'd',
+        'NW': 'w'
     }
 }
 
@@ -77,15 +77,15 @@ def get_stick_direction(x, y):
     return None
 
 
-def stick_mapped_key(stick, direction):
+def send_stick_mapped_key(stick, direction):
     """
     Press the mapped key for the given stick and direction
     """
     if stick not in KEY_MAP or direction not in KEY_MAP[stick]:
         return
 
-    modifier, key = KEY_MAP[stick][direction].split('_')
-    press_key(key, modifier=modifier)
+    key = KEY_MAP[stick][direction]
+    press_key(key)
 
 
 if __name__ == '__main__':
@@ -119,7 +119,7 @@ if __name__ == '__main__':
                     left_stick_dir = get_stick_direction(joy.get_axis(0), joy.get_axis(1))
                     if left_stick_dir:
                         print(f'Left stick: {left_stick_dir}')
-                        stick_mapped_key('LEFT_STICK', left_stick_dir)
+                        send_stick_mapped_key('LEFT_STICK', left_stick_dir)
 
                 if now - right_stick_update_time > RIGHT_STICK_UPDATE_INTERVAL_MSEC:
                     right_stick_update_time = now
