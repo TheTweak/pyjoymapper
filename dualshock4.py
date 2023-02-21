@@ -1,5 +1,8 @@
-import pygame
+import time
 import os
+import pygame
+
+from keypress import press_key
 
 '''
 Dualshock 4 axis mapping:
@@ -36,8 +39,31 @@ os.environ['SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS'] = '1'
 AXIS_MOTION = 1536
 BTN_DOWN = 1539
 BTN_UP = 1540
-
 AXIS_ACTIVATION_THRESHOLD = 0.1
+AXIS_TO_DIR = {
+    (-1,  1): 'S',
+    (1,  -1): 'N',
+    (-1, -1): 'W',
+    (1,   1): 'E',
+    (-1,  0): 'SW',
+    (0,   1): 'SE',
+    (1,   0): 'NE',
+    (0,  -1): 'NW'
+}
+AXIS_TO_DIR_EPS = 0.4
+RIGHT_STICK_UPDATE_INTERVAL_MSEC = 200
+LEFT_STICK_UPDATE_INTERVAL_MSEC = 100
+
+
+def get_stick_direction(x, y):
+    """
+    Get the direction of the stick from the x and y axis values
+    """
+    for k, v in AXIS_TO_DIR.items():
+        if abs(x - k[0]) < AXIS_TO_DIR_EPS and abs(y - k[1]) < AXIS_TO_DIR_EPS:
+            return v
+    return None
+
 
 if __name__ == '__main__':
     pygame.init()
@@ -53,12 +79,26 @@ if __name__ == '__main__':
     joy.init()
     print(f"Name: {joy.get_name()} | Buttons: {joy.get_numbuttons()} | Axes: {joy.get_numaxes()}")
 
+    right_stick_update_time = 0
+    left_stick_update_time = 0
     while True:
         for event in pygame.event.get():
             if 'joy' in event.dict and event.dict['joy'] == joy.get_id():
+
                 if event.type == BTN_DOWN:
                     print(f"Button {event.dict['button']} down")
                 elif event.type == BTN_UP:
                     print(f"Button {event.dict['button']} up")
-                elif event.type == AXIS_MOTION and abs(event.dict['value']) > AXIS_ACTIVATION_THRESHOLD:
-                    print(f"Axis {event.dict['axis']} moved to {event.dict['value']}")
+
+                now = time.time() * 1000
+                if now - left_stick_update_time > LEFT_STICK_UPDATE_INTERVAL_MSEC:
+                    left_stick_update_time = now
+                    left_stick_dir = get_stick_direction(joy.get_axis(0), joy.get_axis(1))
+                    if left_stick_dir:
+                        print(f'Left stick: {left_stick_dir}')
+
+                if now - right_stick_update_time > RIGHT_STICK_UPDATE_INTERVAL_MSEC:
+                    right_stick_update_time = now
+                    right_stick_dir = get_stick_direction(joy.get_axis(2), joy.get_axis(3))
+                    if right_stick_dir:
+                        print(f'Right stick: {right_stick_dir}')
