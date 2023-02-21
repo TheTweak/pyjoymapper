@@ -2,7 +2,7 @@ import time
 import os
 import pygame
 
-from keypress import press_key
+from keypress import press_key, key_down, key_up
 
 '''
 Dualshock 4 axis mapping:
@@ -39,7 +39,7 @@ os.environ['SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS'] = '1'
 AXIS_MOTION = 1536
 BTN_DOWN = 1539
 BTN_UP = 1540
-AXIS_ACTIVATION_THRESHOLD = 0.1
+AXIS_ACTIVATION_THRESHOLD = 0.7
 AXIS_TO_DIR = {
     (-1,  1): 'S',
     (1,  -1): 'N',
@@ -52,7 +52,7 @@ AXIS_TO_DIR = {
 }
 AXIS_TO_DIR_EPS = 0.1
 RIGHT_STICK_UPDATE_INTERVAL_MSEC = 200
-LEFT_STICK_UPDATE_INTERVAL_MSEC = 10
+LEFT_STICK_UPDATE_INTERVAL_MSEC = 1
 KEY_MAP = {
     'LEFT_STICK': {
         'S': 'z',
@@ -71,21 +71,34 @@ def get_stick_direction(x, y):
     """
     Get the direction of the stick from the x and y axis values
     """
-    for k, v in AXIS_TO_DIR.items():
-        if abs(x - k[0]) < AXIS_TO_DIR_EPS and abs(y - k[1]) < AXIS_TO_DIR_EPS:
-            return v
+    if x > 0.6 and y > 0.6:
+        return 'E'
+    elif x < -0.6 and y < -0.6:
+        return 'W'
+    elif x > 0.6 and y < -0.6:
+        return 'N'
+    elif x < -0.6 and y > 0.6:
+        return 'S'
+    elif x > 0.6:
+        return 'NE'
+    elif x < -0.6:
+        return 'SW'
+    elif y > 0.6:
+        return 'SE'
+    elif y < -0.6:
+        return 'NW'
+
     return None
 
 
-def send_stick_mapped_key(stick, direction):
+def get_stick_mapped_key(stick, direction):
     """
-    Press the mapped key for the given stick and direction
+    Returns mapped key for the given stick and direction
     """
     if stick not in KEY_MAP or direction not in KEY_MAP[stick]:
-        return
+        return None
 
-    key = KEY_MAP[stick][direction]
-    press_key(key)
+    return KEY_MAP[stick][direction]
 
 
 if __name__ == '__main__':
@@ -104,6 +117,7 @@ if __name__ == '__main__':
 
     right_stick_update_time = 0
     left_stick_update_time = 0
+    keys_down = set()
     while True:
         for event in pygame.event.get():
             if 'joy' in event.dict and event.dict['joy'] == joy.get_id():
@@ -112,17 +126,15 @@ if __name__ == '__main__':
                     print(f"Button {event.dict['button']} down")
                 elif event.type == BTN_UP:
                     print(f"Button {event.dict['button']} up")
-
-                now = time.time() * 1000
-                if now - left_stick_update_time > LEFT_STICK_UPDATE_INTERVAL_MSEC:
-                    left_stick_update_time = now
+                else:
                     left_stick_dir = get_stick_direction(joy.get_axis(0), joy.get_axis(1))
                     if left_stick_dir:
-                        print(f'Left stick: {left_stick_dir}')
-                        send_stick_mapped_key('LEFT_STICK', left_stick_dir)
-
-                if now - right_stick_update_time > RIGHT_STICK_UPDATE_INTERVAL_MSEC:
-                    right_stick_update_time = now
-                    right_stick_dir = get_stick_direction(joy.get_axis(2), joy.get_axis(3))
-                    if right_stick_dir:
-                        print(f'Right stick: {right_stick_dir}')
+                        print(f'Left stick: {left_stick_dir} {event}')
+                        k = get_stick_mapped_key('LEFT_STICK', left_stick_dir)
+                        if k not in keys_down:
+                            key_down(k)
+                            keys_down.add(k)
+                    else:
+                        for k in keys_down:
+                            key_up(k)
+                        keys_down.clear()
