@@ -149,10 +149,9 @@ if __name__ == '__main__':
     joy.init()
     print(f"Name: {joy.get_name()} | Buttons: {joy.get_numbuttons()} | Axes: {joy.get_numaxes()}")
 
-    right_stick_update_time = 0
-    left_stick_update_time = 0
     keys_down = set()
     prev_left_stick_dir = None
+    prev_right_stick_dir = None
     prev_left_stick_ampl = 0
     reset_mouse_to_center()
 
@@ -178,15 +177,19 @@ if __name__ == '__main__':
                         reset_mouse_to_center()
                         prev_left_stick_dir = None
                         prev_left_stick_ampl = 0
-                    """
-                    if left_stick_dir:
-                        print(f'Left stick: {left_stick_dir} {event}')
-                        k = get_stick_mapped_key('LEFT_STICK', left_stick_dir)
-                        if k not in keys_down:
-                            key_down(k)
-                            keys_down.add(k)
-                    else:
-                        for k in keys_down:
-                            key_up(k)
-                        keys_down.clear()
-                    """
+
+                    right_stick_dir = get_stick_direction(joy.get_axis(2), joy.get_axis(3))
+                    if right_stick_dir and prev_right_stick_dir != right_stick_dir:
+                        prev_right_stick_dir = right_stick_dir
+                        print(f"Right stick: {right_stick_dir}")
+
+                        # k = get_stick_mapped_key('LEFT_STICK', left_stick_dir)
+                        # if k not in keys_down:
+                        #     key_down(k)
+                        #     keys_down.add(k)
+                    elif not right_stick_dir and prev_right_stick_dir:
+                        prev_right_stick_dir = None
+                        # for k in keys_down:
+                        #     key_up(k)
+                        # keys_down.clear()
+
