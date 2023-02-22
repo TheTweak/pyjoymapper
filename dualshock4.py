@@ -38,22 +38,8 @@ os.environ['SDL_JOYSTICK_ALLOW_BACKGROUND_EVENTS'] = '1'
 AXIS_MOTION = 1536
 BTN_DOWN = 1539
 BTN_UP = 1540
-AXIS_ACTIVATION_THRESHOLD = 0.7
-AXIS_TO_DIR = {
-    (-1,  1): 'S',
-    (1,  -1): 'N',
-    (-1, -1): 'W',
-    (1,   1): 'E',
-    (-1,  0): 'SW',
-    (0,   1): 'SE',
-    (1,   0): 'NE',
-    (0,  -1): 'NW'
-}
-AXIS_TO_DIR_EPS = 0.1
-RIGHT_STICK_UPDATE_INTERVAL_MSEC = 200
-LEFT_STICK_UPDATE_INTERVAL_MSEC = 1
 KEY_MAP = {
-    'LEFT_STICK': {
+    'RIGHT_STICK': {
         'S': 'z',
         'N': 'e',
         'W': 'q',
@@ -71,31 +57,6 @@ def get_angle(x, y):
     Get the angle of the stick from the x and y axis values
     """
     return math.atan2(y, x) * 180 / math.pi
-
-
-# def get_stick_direction(x, y):
-#     """
-#     Get the direction of the stick from the x and y axis values
-#     """
-#     threshold = 0.4
-#     if x > threshold and y > threshold:
-#         return 'E'
-#     elif x < -threshold and y < -threshold:
-#         return 'W'
-#     elif x > threshold and y < -threshold:
-#         return 'N'
-#     elif x < -threshold and y > threshold:
-#         return 'S'
-#     elif x > threshold:
-#         return 'NE'
-#     elif x < -threshold:
-#         return 'SW'
-#     elif y > threshold:
-#         return 'SE'
-#     elif y < -threshold:
-#         return 'NW'
-#
-#     return None
 
 
 def get_stick_direction(x, y):
@@ -138,16 +99,16 @@ def reset_mouse_to_center():
     w, h = pyautogui.size()
     x, y = pyautogui.position()
     if abs(x - w / 2) > 10 or abs(y - h / 2) > 10:
-        pyautogui.moveTo(w / 2, h / 2)
         pyautogui.mouseUp(button='right')
+        pyautogui.moveTo(w / 2, h / 2)
 
 
 def move_mouse_in_direction(direction, stick_amplitude):
     """
     Move the mouse in the given direction
     """
-    large_offset = 250
-    small_offset = 150
+    large_offset = 300
+    small_offset = 120
     offset = large_offset if stick_amplitude > 1 else small_offset
 
     w, h = pyautogui.size()
@@ -219,17 +180,18 @@ if __name__ == '__main__':
                         prev_left_stick_ampl = amplitude
 
                     right_stick_dir = get_stick_direction(joy.get_axis(2), joy.get_axis(3))
-                    if right_stick_dir and prev_right_stick_dir != right_stick_dir:
-                        prev_right_stick_dir = right_stick_dir
-                        # print(f"Right stick: {right_stick_dir}")
+                    right_amplitude = math.sqrt(joy.get_axis(2) ** 2 + joy.get_axis(3) ** 2)
+                    right_dir_changed = prev_right_stick_dir != right_stick_dir
 
-                        # k = get_stick_mapped_key('LEFT_STICK', left_stick_dir)
-                        # if k not in keys_down:
-                        #     key_down(k)
-                        #     keys_down.add(k)
-                    elif not right_stick_dir and prev_right_stick_dir:
+                    if not right_stick_dir or right_amplitude < dead_zone:
                         prev_right_stick_dir = None
-                        # for k in keys_down:
-                        #     key_up(k)
-                        # keys_down.clear()
-
+                        for k in keys_down:
+                            pyautogui.keyUp(k)
+                        keys_down.clear()
+                    elif right_dir_changed:
+                        print(f"Right stick: {right_stick_dir}")
+                        prev_right_stick_dir = right_stick_dir
+                        k = get_stick_mapped_key('RIGHT_STICK', right_stick_dir)
+                        if k not in keys_down:
+                            pyautogui.keyDown(k)
+                            keys_down.add(k)
