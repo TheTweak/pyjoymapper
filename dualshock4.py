@@ -133,6 +133,89 @@ def move_mouse_in_direction(direction, stick_amplitude):
     pyautogui.mouseDown(button='right')
 
 
+class Stick:
+    def __init__(self, dead_zone=0.5):
+        self.dir = None
+        self.prev_dir = None
+        self.ampl = 0
+        self.prev_ampl = 0
+        self.dead_zone = dead_zone
+
+    @staticmethod
+    def get_direction(x, y):
+        """
+        Get the direction of the stick from the x and y axis values
+        """
+        angle = get_angle(x, y)
+
+        if -22.5 < angle < 22.5:
+            return 'NE'
+        elif 22.5 < angle < 67.5:
+            return 'E'
+        elif 67.5 < angle < 112.5:
+            return 'SE'
+        elif 112.5 < angle < 157.5:
+            return 'S'
+        elif -22.5 > angle > -67.5:
+            return 'N'
+        elif -67.5 > angle > -112.5:
+            return 'NW'
+        elif -112.5 > angle > -157.5:
+            return 'W'
+        elif angle > 157.5 or angle < -157.5:
+            return 'SW'
+
+        return None
+
+
+class LeftStick(Stick):
+
+    def __init__(self, dead_zone=0.5):
+        super().__init__(dead_zone)
+
+    def update(self, x, y):
+        self.dir = get_stick_direction(x, y)
+        self.ampl = math.sqrt(x ** 2 + y ** 2)
+
+        dir_changed = self.prev_dir != self.dir
+        ampl_changed = abs(self.ampl - self.prev_ampl) > 0.1
+
+        if not self.dir or self.ampl < self.dead_zone:
+            reset_mouse_to_center()
+            self.prev_dir = None
+            self.prev_ampl = 0
+        elif dir_changed or ampl_changed:
+            angle = get_angle(x, y)
+            print(f"Left stick angle: {angle} dir: {self.dir} ampl: {self.ampl}")
+            move_mouse_in_direction(self.dir, self.ampl)
+            self.prev_dir = self.dir
+            self.prev_ampl = self.ampl
+
+
+class RightStick(Stick):
+    def __init__(self, dead_zone=0.5):
+        super().__init__(dead_zone)
+        self.keys_down = set()
+
+    def update(self, x, y):
+        self.dir = get_stick_direction(x, y)
+        self.ampl = math.sqrt(x ** 2 + y ** 2)
+        dir_changed = self.dir != self.prev_dir
+
+        if not self.dir or self.ampl < self.dead_zone:
+            self.prev_dir = None
+            for k in self.keys_down:
+                pyautogui.keyUp(k)
+            self.keys_down.clear()
+        elif dir_changed:
+            print(f"Right stick: {self.dir}")
+            self.prev_dir = self.dir
+            k = get_stick_mapped_key('RIGHT_STICK', self.dir)
+            if k not in self.keys_down:
+                pyautogui.keyDown(k)
+                self.keys_down.add(k)
+
+
 if __name__ == '__main__':
     pygame.init()
     pygame.joystick.init()
@@ -148,10 +231,10 @@ if __name__ == '__main__':
     print(f"Name: {joy.get_name()} | Buttons: {joy.get_numbuttons()} | Axes: {joy.get_numaxes()}")
 
     keys_down = set()
-    prev_left_stick_dir = None
     prev_right_stick_dir = None
-    prev_left_stick_ampl = 0
     reset_mouse_to_center()
+    left_stick = LeftStick()
+    right_stick = RightStick()
 
     while True:
         for event in pygame.event.get():
@@ -162,36 +245,6 @@ if __name__ == '__main__':
                 elif event.type == BTN_UP:
                     print(f"Button {event.dict['button']} up")
                 else:
-                    left_stick_dir = get_stick_direction(joy.get_axis(0), joy.get_axis(1))
-                    amplitude = math.sqrt(joy.get_axis(0) ** 2 + joy.get_axis(1) ** 2)
-                    dead_zone = 0.5
-                    dir_changed = prev_left_stick_dir != left_stick_dir
-                    ampl_changed = abs(prev_left_stick_ampl - amplitude) > 0.1
+                    left_stick.update(joy.get_axis(0), joy.get_axis(1))
+                    right_stick.update(joy.get_axis(2), joy.get_axis(3))
 
-                    if not left_stick_dir or amplitude < dead_zone:
-                        reset_mouse_to_center()
-                        prev_left_stick_dir = None
-                        prev_left_stick_ampl = 0
-                    elif dir_changed or ampl_changed:
-                        angle = get_angle(joy.get_axis(0), joy.get_axis(1))
-                        print(f"Left stick angle: {angle} dir: {left_stick_dir} ampl: {amplitude}")
-                        move_mouse_in_direction(left_stick_dir, amplitude)
-                        prev_left_stick_dir = left_stick_dir
-                        prev_left_stick_ampl = amplitude
-
-                    right_stick_dir = get_stick_direction(joy.get_axis(2), joy.get_axis(3))
-                    right_amplitude = math.sqrt(joy.get_axis(2) ** 2 + joy.get_axis(3) ** 2)
-                    right_dir_changed = prev_right_stick_dir != right_stick_dir
-
-                    if not right_stick_dir or right_amplitude < dead_zone:
-                        prev_right_stick_dir = None
-                        for k in keys_down:
-                            pyautogui.keyUp(k)
-                        keys_down.clear()
-                    elif right_dir_changed:
-                        print(f"Right stick: {right_stick_dir}")
-                        prev_right_stick_dir = right_stick_dir
-                        k = get_stick_mapped_key('RIGHT_STICK', right_stick_dir)
-                        if k not in keys_down:
-                            pyautogui.keyDown(k)
-                            keys_down.add(k)
