@@ -1,8 +1,7 @@
-import time
 import os
+import math
+import pyautogui
 import pygame
-
-from keypress import press_key, key_down, key_up
 
 '''
 Dualshock 4 axis mapping:
@@ -71,21 +70,22 @@ def get_stick_direction(x, y):
     """
     Get the direction of the stick from the x and y axis values
     """
-    if x > 0.6 and y > 0.6:
+    threshold = 0.4
+    if x > threshold and y > threshold:
         return 'E'
-    elif x < -0.6 and y < -0.6:
+    elif x < -threshold and y < -threshold:
         return 'W'
-    elif x > 0.6 and y < -0.6:
+    elif x > threshold and y < -threshold:
         return 'N'
-    elif x < -0.6 and y > 0.6:
+    elif x < -threshold and y > threshold:
         return 'S'
-    elif x > 0.6:
+    elif x > threshold:
         return 'NE'
-    elif x < -0.6:
+    elif x < -threshold:
         return 'SW'
-    elif y > 0.6:
+    elif y > threshold:
         return 'SE'
-    elif y < -0.6:
+    elif y < -threshold:
         return 'NW'
 
     return None
@@ -99,6 +99,40 @@ def get_stick_mapped_key(stick, direction):
         return None
 
     return KEY_MAP[stick][direction]
+
+
+def reset_mouse_to_center():
+    w, h = pyautogui.size()
+    pyautogui.moveTo(w / 2, h / 2)
+
+
+def move_mouse_in_direction(direction, stick_amplitude):
+    """
+    Move the mouse in the given direction
+    """
+    large_offset = 150
+    small_offset = 50
+    offset = large_offset if stick_amplitude > 0.95 else small_offset
+
+    w, h = pyautogui.size()
+    cx, cy = w / 2, h / 2
+
+    if direction == 'N':
+        pyautogui.moveTo(cx + offset, cy - offset)
+    elif direction == 'S':
+        pyautogui.moveTo(cx - offset, cy + offset)
+    elif direction == 'E':
+        pyautogui.moveTo(cx + offset, cy + offset)
+    elif direction == 'W':
+        pyautogui.moveTo(cx - offset, cy - offset)
+    elif direction == 'NE':
+        pyautogui.moveTo(cx + offset, cy)
+    elif direction == 'NW':
+        pyautogui.moveTo(cx, cy - offset)
+    elif direction == 'SE':
+        pyautogui.moveTo(cx, cy + offset)
+    elif direction == 'SW':
+        pyautogui.moveTo(cx - offset, cy)
 
 
 if __name__ == '__main__':
@@ -118,6 +152,10 @@ if __name__ == '__main__':
     right_stick_update_time = 0
     left_stick_update_time = 0
     keys_down = set()
+    prev_left_stick_dir = None
+    prev_left_stick_ampl = 0
+    reset_mouse_to_center()
+
     while True:
         for event in pygame.event.get():
             if 'joy' in event.dict and event.dict['joy'] == joy.get_id():
@@ -128,6 +166,19 @@ if __name__ == '__main__':
                     print(f"Button {event.dict['button']} up")
                 else:
                     left_stick_dir = get_stick_direction(joy.get_axis(0), joy.get_axis(1))
+                    amplitude = math.sqrt(joy.get_axis(0) ** 2 + joy.get_axis(1) ** 2)
+                    dir_changed = prev_left_stick_dir != left_stick_dir
+                    ampl_changed = abs(prev_left_stick_ampl - amplitude) > 0.1
+
+                    if left_stick_dir and (dir_changed or ampl_changed):
+                        move_mouse_in_direction(left_stick_dir, amplitude)
+                        prev_left_stick_dir = left_stick_dir
+                        prev_left_stick_ampl = amplitude
+                    elif not left_stick_dir and prev_left_stick_dir:
+                        reset_mouse_to_center()
+                        prev_left_stick_dir = None
+                        prev_left_stick_ampl = 0
+                    """
                     if left_stick_dir:
                         print(f'Left stick: {left_stick_dir} {event}')
                         k = get_stick_mapped_key('LEFT_STICK', left_stick_dir)
@@ -138,3 +189,4 @@ if __name__ == '__main__':
                         for k in keys_down:
                             key_up(k)
                         keys_down.clear()
+                    """
