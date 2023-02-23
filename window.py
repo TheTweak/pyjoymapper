@@ -1,8 +1,22 @@
+from time import sleep
+
 from PyQt6.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton, QGridLayout, QHBoxLayout, QVBoxLayout, \
     QDial
-from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtCore import QSize, QRunnable, pyqtSlot, Qt
+from dualshock4 import DS4Controller
 
 import sys
+
+
+class ControllerWorker(QRunnable):
+    def __init__(self):
+        super(ControllerWorker, self).__init__()
+        self.ds4 = DS4Controller()
+
+    @pyqtSlot()
+    def run(self):
+        while True:
+            sleep(1000)
 
 
 class Button(QPushButton):
@@ -16,7 +30,8 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("My App")
         self.setWindowOpacity(0.6)
-        self.setFixedSize(QSize(600, 200))
+        self.setFixedSize(QSize(600, 300))
+        self.setWindowFlags(Qt.WindowType.WindowStaysOnTopHint)
 
         self.up = Button('up')
         self.down = Button('down')
@@ -35,6 +50,10 @@ class MainWindow(QMainWindow):
         self.touchpad = Button('touchpad')
         self.left_stick = QDial()
         self.right_stick = QDial()
+
+        self.start_stop_btn = QPushButton('Start')
+        self.start_stop_btn.setCheckable(True)
+        self.start_stop_btn.clicked.connect(self.start_stop)
 
         dpad = QGridLayout()
         dpad.addWidget(self.up, 0, 1)
@@ -72,12 +91,24 @@ class MainWindow(QMainWindow):
         right_trigger.addWidget(self.r1)
         triggers.addLayout(right_trigger)
 
+        settings = QHBoxLayout()
+        settings.addWidget(self.start_stop_btn)
+
+        vbox.addLayout(settings)
         vbox.addLayout(triggers)
         vbox.addLayout(hbox)
 
         container = QWidget()
         container.setLayout(vbox)
         self.setCentralWidget(container)
+
+        self.controller = DS4Controller()
+
+    def start_stop(self):
+        self.start_stop_btn.setText('Press Share to stop')
+        self.controller.start()  # blocking current thread
+        self.start_stop_btn.setText('Start')
+        self.start_stop_btn.setChecked(False)
 
 
 app = QApplication(sys.argv)

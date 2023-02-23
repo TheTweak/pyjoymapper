@@ -241,12 +241,14 @@ class DS4Controller:
 
                     if event.type == BTN_DOWN:
                         print(f"Button {event.dict['button']} down")
+                        if event.dict['button'] == 4:  # Share button
+                            return
                     elif event.type == BTN_UP:
                         print(f"Button {event.dict['button']} up")
                     else:
                         self.left_stick.update(self.joy.get_axis(0), self.joy.get_axis(1))
                         self.right_stick.update(self.joy.get_axis(2), self.joy.get_axis(3))
 
-
+                                                     
 if __name__ == '__main__':
     DS4Controller().start()
