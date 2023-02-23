@@ -216,35 +216,37 @@ class RightStick(Stick):
                 self.keys_down.add(k)
 
 
+class DS4Controller:
+    def __init__(self):
+        pygame.init()
+        pygame.joystick.init()
+        joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+
+        if len(joysticks) == 0:
+            print("No joysticks found")
+            exit(1)
+
+        print(joysticks)
+        self.joy = pygame.joystick.Joystick(0)
+        self.joy.init()
+        print(f"Name: {self.joy.get_name()} | Buttons: {self.joy.get_numbuttons()} | Axes: {self.joy.get_numaxes()}")
+
+        self.left_stick = LeftStick()
+        self.right_stick = RightStick()
+
+    def start(self):
+        while True:
+            for event in pygame.event.get():
+                if 'joy' in event.dict and event.dict['joy'] == self.joy.get_id():
+
+                    if event.type == BTN_DOWN:
+                        print(f"Button {event.dict['button']} down")
+                    elif event.type == BTN_UP:
+                        print(f"Button {event.dict['button']} up")
+                    else:
+                        self.left_stick.update(self.joy.get_axis(0), self.joy.get_axis(1))
+                        self.right_stick.update(self.joy.get_axis(2), self.joy.get_axis(3))
+
+
 if __name__ == '__main__':
-    pygame.init()
-    pygame.joystick.init()
-    joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
-
-    if len(joysticks) == 0:
-        print("No joysticks found")
-        exit(1)
-
-    print(joysticks)
-    joy = pygame.joystick.Joystick(0)
-    joy.init()
-    print(f"Name: {joy.get_name()} | Buttons: {joy.get_numbuttons()} | Axes: {joy.get_numaxes()}")
-
-    keys_down = set()
-    prev_right_stick_dir = None
-    reset_mouse_to_center()
-    left_stick = LeftStick()
-    right_stick = RightStick()
-
-    while True:
-        for event in pygame.event.get():
-            if 'joy' in event.dict and event.dict['joy'] == joy.get_id():
-
-                if event.type == BTN_DOWN:
-                    print(f"Button {event.dict['button']} down")
-                elif event.type == BTN_UP:
-                    print(f"Button {event.dict['button']} up")
-                else:
-                    left_stick.update(joy.get_axis(0), joy.get_axis(1))
-                    right_stick.update(joy.get_axis(2), joy.get_axis(3))
-
+    DS4Controller().start()
