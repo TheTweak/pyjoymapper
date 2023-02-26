@@ -53,15 +53,22 @@ KEY_MAP = {
     'NE': 'd,j',
     'NW': 'w,y',
 
-    'A': 'F1,F9',
-    'B': 'F2,F10',
-    'C': 'F3,F11',
-    'D': 'F4,F12',
+    'A': 'F1,F9,_',
+    'B': 'F2,F10,+',
+    'C': 'F3,F11,{',
+    'D': 'F4,F12,}',
 
-    'LEFT': 'F5,F16',
-    'UP': 'F6,F17',
-    'RIGHT': 'F7,F18',
-    'DOWN': 'F8,F19'
+    'LEFT': 'F5,F16,(',
+    'UP': 'F6,F17,)',
+    'RIGHT': 'F7,F18,;',
+    'DOWN': 'F8,F19,:',
+
+    'touch': '[,]',
+
+    'L1': '-',
+    'R1': '=,.',
+    'R3': 'r,v',
+    'L3': 'f'
 }
 
 
@@ -293,9 +300,11 @@ class DS4Controller:
             print("No joysticks found")
             exit(1)
 
-        self.key_maps = [{}, {}, {}]
+        self.key_maps = [{}, {}, {}, {}]
 
-        self.pattern = re.compile(r'(\w+)(?:,(\w+),*)*(\w+)*')
+        self.pattern = re.compile(
+            r'([a-zA-Z0-9_\[\]\-=().;:{}+]+)(?:,([a-zA-Z0-9_\[\]\-=().;:{}+]+),*)*([a-zA-Z0-9_\[\]\-=().;:{}+]+)*'
+        )
         for k, v in KEY_MAP.items():
             m = self.pattern.match(v)
             if m:
