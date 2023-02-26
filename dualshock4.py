@@ -1,5 +1,8 @@
 import os
 import math
+import re
+from enum import IntFlag
+
 import pyautogui
 import pygame
 
@@ -41,16 +44,24 @@ AXIS_MOTION = 1536
 BTN_DOWN = 1539
 BTN_UP = 1540
 KEY_MAP = {
-    'RIGHT_STICK': {
-        'S': 'z',
-        'N': 'e',
-        'W': 'q',
-        'E': 'c',
-        'SW': 'a',
-        'SE': 'x',
-        'NE': 'd',
-        'NW': 'w'
-    }
+    'S': 'z',
+    'N': 'e',
+    'W': 'q',
+    'E': 'c',
+    'SW': 'a',
+    'SE': 'x',
+    'NE': 'd',
+    'NW': 'w',
+
+    'A': 'F1,F9',
+    'B': 'F2',
+    'C': 'F3',
+    'D': 'F4',
+
+    'LEFT': 'F5',
+    'UP': 'F6',
+    'RIGHT': 'F7',
+    'DOWN': 'F8'
 }
 
 
@@ -87,14 +98,14 @@ def get_stick_direction(x, y):
     return None
 
 
-def get_stick_mapped_key(stick, direction):
+def get_stick_mapped_key(direction):
     """
-    Returns mapped key for the given stick and direction
+    Returns mapped key for the given direction
     """
-    if stick not in KEY_MAP or direction not in KEY_MAP[stick]:
+    if direction not in KEY_MAP:
         return None
 
-    return KEY_MAP[stick][direction]
+    return KEY_MAP[direction]
 
 
 def reset_mouse_to_center():
@@ -135,37 +146,37 @@ def move_mouse_in_direction(direction, stick_amplitude):
     pyautogui.mouseDown(button='right')
 
 
-def get_button_state(event):
+def get_button_alias_and_state(event):
     if event.dict['button'] == 4:
-        return State.SHARE
+        return 'share', State.SHARE
     if event.dict['button'] == 6:
-        return State.OPTIONS
+        return 'options', State.OPTIONS
     if event.dict['button'] == 7:
-        return State.L3
+        return 'L3', State.L3
     if event.dict['button'] == 8:
-        return State.R3
+        return 'R3', State.R3
     if event.dict['button'] == 15:
-        return State.TOUCH
+        return 'touch', State.TOUCH
     if event.dict['button'] == 2:
-        return State.A
+        return 'A', State.A
     if event.dict['button'] == 1:
-        return State.D
+        return 'D', State.D
     if event.dict['button'] == 0:
-        return State.C
+        return 'C', State.C
     if event.dict['button'] == 3:
-        return State.B
+        return 'B', State.B
     if event.dict['button'] == 9:
-        return State.L1
+        return 'L1', State.L1
     if event.dict['button'] == 10:
-        return State.R1
+        return 'R1', State.R1
     if event.dict['button'] == 11:
-        return State.UP
+        return 'UP', State.UP
     if event.dict['button'] == 12:
-        return State.DOWN
+        return 'DOWN', State.DOWN
     if event.dict['button'] == 13:
-        return State.LEFT
+        return 'LEFT', State.LEFT
     if event.dict['button'] == 14:
-        return State.RIGHT
+        return 'RIGHT', State.RIGHT
     return State.NONE
 
 
@@ -246,10 +257,29 @@ class RightStick(Stick):
         elif dir_changed:
             print(f"Right stick: {self.dir}")
             self.prev_dir = self.dir
-            k = get_stick_mapped_key('RIGHT_STICK', self.dir)
+            k = get_stick_mapped_key(self.dir)
             if k not in self.keys_down:
                 pyautogui.keyDown(k)
                 self.keys_down.add(k)
+
+
+class Trigger:
+    def __init__(self, name, dead_zone=0.5):
+        self.dead_zone = dead_zone
+        self.name = name
+
+    def is_down(self, value):
+        if value > self.dead_zone:
+            print(f"{self.name} is down, value: {value}")
+            return True
+        return False
+
+
+class Layer(IntFlag):
+    NONE = 0
+    L2 = 1
+    R2 = 2
+    L2R2 = 3
 
 
 class DS4Controller:
@@ -269,8 +299,36 @@ class DS4Controller:
 
         self.left_stick = LeftStick()
         self.right_stick = RightStick()
+        self.left_trigger = Trigger('L2')
+        self.right_trigger = Trigger('R2')
+
         self.button_state = State.NONE
         self.active = True
+
+        self.layer = Layer.NONE
+        self.key_maps = [{}, {}, {}]
+
+        self.pattern = re.compile(r'(\w+)(?:,(\w+),*)*(\w+)*')
+        for k, v in KEY_MAP.items():
+            m = self.pattern.match(v)
+            if m:
+                for i, g in enumerate(m.groups()):
+                    if g:
+                        self.key_maps[i][k] = g
+
+    def handle_button(self, alias, down=True):
+        km = self.key_maps[self.layer]
+
+        if alias not in km:
+            print(f"No mapping for button: {alias}")
+            return
+
+        key = km[alias]
+        print(f"BUTTON: {alias} -> {key}")
+        if down:
+            pyautogui.keyDown(key)
+        else:
+            pyautogui.keyUp(key)
 
     def update(self, pygame_events=None):
 
@@ -280,22 +338,41 @@ class DS4Controller:
         for event in pygame_events:
             if 'joy' in event.dict and event.dict['joy'] == self.joy.get_id():
 
-                if event.type == BTN_DOWN:
-                    print(f"Button {event.dict['button']} down")
-                    self.button_state = self.button_state | get_button_state(event)
+                if self.active:
+                    self.left_stick.update(self.joy.get_axis(0), self.joy.get_axis(1))
+                    self.right_stick.update(self.joy.get_axis(2), self.joy.get_axis(3))
 
-                    if event.dict['button'] == 4:  # Share button
+                    l2_is_down = self.left_trigger.is_down(self.joy.get_axis(4))
+                    if l2_is_down:
+                        self.layer = self.layer | Layer.L2
+                        self.button_state = self.button_state | State.L2
+                    else:
+                        self.layer = self.layer & ~Layer.L2
+                        self.button_state = self.button_state & ~State.L2
+
+                    r2_is_down = self.right_trigger.is_down(self.joy.get_axis(5))
+                    if r2_is_down:
+                        self.layer = self.layer | Layer.R2
+                        self.button_state = self.button_state | State.R2
+                    else:
+                        self.layer = self.layer & ~Layer.R2
+                        self.button_state = self.button_state & ~State.R2
+
+                if event.type == BTN_DOWN:
+                    alias, state = get_button_alias_and_state(event)
+                    print(f"Button {alias} down")
+                    self.button_state = self.button_state | state
+
+                    if state & State.SHARE:
                         self.active = not self.active
 
                     if self.active:
-                        pass
-
+                        self.handle_button(alias)
                 elif event.type == BTN_UP and self.active:
-                    print(f"Button {event.dict['button']} up")
-                    self.button_state = self.button_state & ~get_button_state(event)
-                elif self.active:
-                    self.left_stick.update(self.joy.get_axis(0), self.joy.get_axis(1))
-                    self.right_stick.update(self.joy.get_axis(2), self.joy.get_axis(3))
+                    alias, state = get_button_alias_and_state(event)
+                    self.handle_button(alias, down=False)
+                    print(f"Button {alias} up")
+                    self.button_state = self.button_state & ~state
 
         return self.button_state if self.active else State.INACTIVE
     
