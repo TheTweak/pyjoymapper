@@ -44,24 +44,24 @@ AXIS_MOTION = 1536
 BTN_DOWN = 1539
 BTN_UP = 1540
 KEY_MAP = {
-    'S': 'z',
-    'N': 'e',
-    'W': 'q',
-    'E': 'c',
-    'SW': 'a',
-    'SE': 'x',
-    'NE': 'd',
-    'NW': 'w',
+    'S': 'z,b',
+    'N': 'e,u',
+    'W': 'q,t',
+    'E': 'c,m',
+    'SW': 'a,g',
+    'SE': 'x,n',
+    'NE': 'd,j',
+    'NW': 'w,y',
 
     'A': 'F1,F9',
-    'B': 'F2',
-    'C': 'F3',
-    'D': 'F4',
+    'B': 'F2,F10',
+    'C': 'F3,F11',
+    'D': 'F4,F12',
 
-    'LEFT': 'F5',
-    'UP': 'F6',
-    'RIGHT': 'F7',
-    'DOWN': 'F8'
+    'LEFT': 'F5,F16',
+    'UP': 'F6,F17',
+    'RIGHT': 'F7,F18',
+    'DOWN': 'F8,F19'
 }
 
 
@@ -96,16 +96,6 @@ def get_stick_direction(x, y):
         return 'SW'
 
     return None
-
-
-def get_stick_mapped_key(direction):
-    """
-    Returns mapped key for the given direction
-    """
-    if direction not in KEY_MAP:
-        return None
-
-    return KEY_MAP[direction]
 
 
 def reset_mouse_to_center():
@@ -240,11 +230,22 @@ class LeftStick(Stick):
 
 
 class RightStick(Stick):
-    def __init__(self, dead_zone=0.5):
+    def __init__(self, key_maps, dead_zone=0.5):
         super().__init__(dead_zone)
         self.keys_down = set()
+        self.key_maps = key_maps
 
-    def update(self, x, y):
+    def get_stick_mapped_key(self, layer):
+        """
+        Returns mapped key for the given direction
+        """
+        km = self.key_maps[layer]
+        if self.dir not in km:
+            return None
+
+        return km[self.dir]
+
+    def update(self, x, y, layer):
         self.dir = get_stick_direction(x, y)
         self.ampl = math.sqrt(x ** 2 + y ** 2)
         dir_changed = self.dir != self.prev_dir
@@ -257,7 +258,7 @@ class RightStick(Stick):
         elif dir_changed:
             print(f"Right stick: {self.dir}")
             self.prev_dir = self.dir
-            k = get_stick_mapped_key(self.dir)
+            k = self.get_stick_mapped_key(layer)
             if k not in self.keys_down:
                 pyautogui.keyDown(k)
                 self.keys_down.add(k)
@@ -292,20 +293,6 @@ class DS4Controller:
             print("No joysticks found")
             exit(1)
 
-        print(joysticks)
-        self.joy = pygame.joystick.Joystick(0)
-        self.joy.init()
-        print(f"Name: {self.joy.get_name()}\nButtons: {self.joy.get_numbuttons()}\nAxes: {self.joy.get_numaxes()}\nBattery: {self.joy.get_power_level()}")
-
-        self.left_stick = LeftStick()
-        self.right_stick = RightStick()
-        self.left_trigger = Trigger('L2')
-        self.right_trigger = Trigger('R2')
-
-        self.button_state = State.NONE
-        self.active = True
-
-        self.layer = Layer.NONE
         self.key_maps = [{}, {}, {}]
 
         self.pattern = re.compile(r'(\w+)(?:,(\w+),*)*(\w+)*')
@@ -315,6 +302,22 @@ class DS4Controller:
                 for i, g in enumerate(m.groups()):
                     if g:
                         self.key_maps[i][k] = g
+
+        print(joysticks)
+        self.joy = pygame.joystick.Joystick(0)
+        self.joy.init()
+        print(f"Name: {self.joy.get_name()}\nButtons: {self.joy.get_numbuttons()}\nAxes: {self.joy.get_numaxes()}\nBattery: {self.joy.get_power_level()}")
+
+        self.left_stick = LeftStick()
+        self.right_stick = RightStick(self.key_maps)
+        self.left_trigger = Trigger('L2')
+        self.right_trigger = Trigger('R2')
+
+        self.button_state = State.NONE
+        self.active = True
+
+        self.layer = Layer.NONE
+
 
     def handle_button(self, alias, down=True):
         km = self.key_maps[self.layer]
@@ -339,9 +342,6 @@ class DS4Controller:
             if 'joy' in event.dict and event.dict['joy'] == self.joy.get_id():
 
                 if self.active:
-                    self.left_stick.update(self.joy.get_axis(0), self.joy.get_axis(1))
-                    self.right_stick.update(self.joy.get_axis(2), self.joy.get_axis(3))
-
                     l2_is_down = self.left_trigger.is_down(self.joy.get_axis(4))
                     if l2_is_down:
                         self.layer = self.layer | Layer.L2
@@ -357,6 +357,9 @@ class DS4Controller:
                     else:
                         self.layer = self.layer & ~Layer.R2
                         self.button_state = self.button_state & ~State.R2
+
+                    self.left_stick.update(self.joy.get_axis(0), self.joy.get_axis(1))
+                    self.right_stick.update(self.joy.get_axis(2), self.joy.get_axis(3), self.layer)
 
                 if event.type == BTN_DOWN:
                     alias, state = get_button_alias_and_state(event)
