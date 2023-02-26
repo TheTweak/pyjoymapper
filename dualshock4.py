@@ -3,6 +3,8 @@ import math
 import pyautogui
 import pygame
 
+from imgui_window import State
+
 '''
 Dualshock 4 axis mapping:
 
@@ -133,6 +135,40 @@ def move_mouse_in_direction(direction, stick_amplitude):
     pyautogui.mouseDown(button='right')
 
 
+def get_button_state(event):
+    if event.dict['button'] == 4:
+        return State.SHARE
+    if event.dict['button'] == 6:
+        return State.OPTIONS
+    if event.dict['button'] == 7:
+        return State.L3
+    if event.dict['button'] == 8:
+        return State.R3
+    if event.dict['button'] == 15:
+        return State.TOUCH
+    if event.dict['button'] == 2:
+        return State.A
+    if event.dict['button'] == 1:
+        return State.D
+    if event.dict['button'] == 0:
+        return State.C
+    if event.dict['button'] == 3:
+        return State.B
+    if event.dict['button'] == 9:
+        return State.L1
+    if event.dict['button'] == 10:
+        return State.R1
+    if event.dict['button'] == 11:
+        return State.UP
+    if event.dict['button'] == 12:
+        return State.DOWN
+    if event.dict['button'] == 13:
+        return State.LEFT
+    if event.dict['button'] == 14:
+        return State.RIGHT
+    return State.NONE
+
+
 class Stick:
     def __init__(self, dead_zone=0.5):
         self.dir = None
@@ -229,26 +265,43 @@ class DS4Controller:
         print(joysticks)
         self.joy = pygame.joystick.Joystick(0)
         self.joy.init()
-        print(f"Name: {self.joy.get_name()} | Buttons: {self.joy.get_numbuttons()} | Axes: {self.joy.get_numaxes()}")
+        print(f"Name: {self.joy.get_name()}\nButtons: {self.joy.get_numbuttons()}\nAxes: {self.joy.get_numaxes()}\nBattery: {self.joy.get_power_level()}")
 
         self.left_stick = LeftStick()
         self.right_stick = RightStick()
+        self.button_state = State.NONE
+        self.active = True
 
-    def start(self):
-        while True:
-            for event in pygame.event.get():
-                if 'joy' in event.dict and event.dict['joy'] == self.joy.get_id():
+    def update(self, pygame_events=None):
 
-                    if event.type == BTN_DOWN:
-                        print(f"Button {event.dict['button']} down")
-                        if event.dict['button'] == 4:  # Share button
-                            return
-                    elif event.type == BTN_UP:
-                        print(f"Button {event.dict['button']} up")
-                    else:
-                        self.left_stick.update(self.joy.get_axis(0), self.joy.get_axis(1))
-                        self.right_stick.update(self.joy.get_axis(2), self.joy.get_axis(3))
+        if not pygame_events:
+            pygame_events = []
+        
+        for event in pygame_events:
+            if 'joy' in event.dict and event.dict['joy'] == self.joy.get_id():
 
-                                                     
+                if event.type == BTN_DOWN:
+                    print(f"Button {event.dict['button']} down")
+                    self.button_state = self.button_state | get_button_state(event)
+
+                    if event.dict['button'] == 4:  # Share button
+                        self.active = not self.active
+
+                    if self.active:
+                        pass
+
+                elif event.type == BTN_UP and self.active:
+                    print(f"Button {event.dict['button']} up")
+                    self.button_state = self.button_state & ~get_button_state(event)
+                elif self.active:
+                    self.left_stick.update(self.joy.get_axis(0), self.joy.get_axis(1))
+                    self.right_stick.update(self.joy.get_axis(2), self.joy.get_axis(3))
+
+        return self.button_state if self.active else State.INACTIVE
+    
+    
 if __name__ == '__main__':
-    DS4Controller().start()
+    ds4 = DS4Controller()
+
+    while True:
+        ds4.update(pygame_events=pygame.event.get())
