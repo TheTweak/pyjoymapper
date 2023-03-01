@@ -174,7 +174,7 @@ def get_button_alias_and_state(event):
         return 'LEFT', State.LEFT
     if event.dict['button'] == 14:
         return 'RIGHT', State.RIGHT
-    return State.NONE
+    return 'None', State.NONE
 
 
 class Stick:
@@ -327,7 +327,6 @@ class DS4Controller:
 
         self.layer = Layer.NONE
 
-
     def handle_button(self, alias, down=True):
         km = self.key_maps[self.layer]
 
@@ -340,7 +339,10 @@ class DS4Controller:
         if down:
             pyautogui.keyDown(key)
         else:
-            pyautogui.keyUp(key)
+            # perform key up for all aliases of this button
+            for jm in self.key_maps:
+                if alias in jm:
+                    pyautogui.keyUp(jm[alias])
 
     def update(self, pygame_events=None):
 
