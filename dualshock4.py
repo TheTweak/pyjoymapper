@@ -3,6 +3,7 @@ import math
 import re
 from enum import IntFlag
 
+import pyautogui
 from pywinauto.keyboard import send_keys
 from pywinauto import mouse
 import pygame
@@ -56,13 +57,13 @@ KEY_MAP = {
 
     'A': 'k,o,_',
     'B': 'p,i,+',
-    'C': '3,F11,{',
+    'C': '3,{F11},{',
     'D': '6,l,}',
 
-    'LEFT': '9,F16,(',
-    'UP': '8,F17,)',
-    'RIGHT': 'F7,F18,;',
-    'DOWN': '7,F19,:',
+    'LEFT': '9,{F16},(',
+    'UP': '8,{F17},)',
+    'RIGHT': '{F7},{F18},;',
+    'DOWN': '7,{F19},:',
 
     'touch': '[,]',
 
@@ -260,16 +261,11 @@ class RightStick(Stick):
 
         if not self.dir or self.ampl < self.dead_zone:
             self.prev_dir = None
-            for k in self.keys_down:
-                pyautogui.keyUp(k)
-            self.keys_down.clear()
         elif dir_changed:
             print(f"Right stick: {self.dir}")
             self.prev_dir = self.dir
             k = self.get_stick_mapped_key(layer)
-            if k not in self.keys_down:
-                pyautogui.keyDown(k)
-                self.keys_down.add(k)
+            send_keys(k, vk_packet=False)
 
 
 class Trigger:
@@ -337,13 +333,7 @@ class DS4Controller:
 
         key = km[alias]
         print(f"BUTTON: {alias} -> {key}")
-        if down:
-            pyautogui.keyDown(key)
-        else:
-            # perform key up for all aliases of this button
-            for jm in self.key_maps:
-                if alias in jm:
-                    pyautogui.keyUp(jm[alias])
+        send_keys(key, vk_packet=False)
 
     def update(self, pygame_events=None):
 
@@ -385,7 +375,6 @@ class DS4Controller:
                         self.handle_button(alias)
                 elif event.type == BTN_UP and self.active:
                     alias, state = get_button_alias_and_state(event)
-                    self.handle_button(alias, down=False)
                     print(f"Button {alias} up")
                     self.button_state = self.button_state & ~state
 
