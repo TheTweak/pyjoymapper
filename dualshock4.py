@@ -3,7 +3,8 @@ import math
 import re
 from enum import IntFlag
 
-import pyautogui
+from pywinauto.keyboard import send_keys
+from pywinauto import mouse
 import pygame
 
 from imgui_window import State
