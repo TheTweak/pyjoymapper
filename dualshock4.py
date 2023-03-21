@@ -384,5 +384,7 @@ class DS4Controller:
 if __name__ == '__main__':
     ds4 = DS4Controller()
 
+    import time
     while True:
         ds4.update(pygame_events=pygame.event.get())
+        time.sleep(0.001)
