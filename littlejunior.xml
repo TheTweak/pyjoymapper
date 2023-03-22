@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data version="0">
+    <widgets oa_geometry="AdnQywADAAAAAAK7AAABYQAABJcAAAL3AAACvAAAAYAAAASWAAAC9gAAAAAAAAAABQAAAAK8AAABgAAABJYAAAL2" oa_state="AAAA/wAAAAD9AAAAAAAAAdsAAAF3AAAABAAAAAQAAAAIAAAACPwAAAAA" skills_sort_indicator_shown="1" skills_sort_indocator_section="3" skills_sort_indocator_order="1"/>
+    <abysst stay_on_top="0" language="English"/>
+    <misc recount_key="0" recount_modifiers="0" recount_pass_to_uo="0" poison_key="0" poison_modifiers="0" poison_pass_to_uo="0"/>
+    <auto_use name="combat" selected="1" use_percents="0" heal="1" heal_hp="70" heal_delay="100" greater_heal="1" greater_heal_hp="50" greater_heal_delay="100" invis="0" invis_hp="20" invis_delay="100" reactive="1" reactive_hp="50" reactive_delay="100" reflection="0" reflection_hp="20" reflection_delay="100" dragon_meat="1" dragon_meat_hp="30" dragon_meat_delay="100" red_bull="0" red_bull_hp="20" red_bull_delay="100" au_key="0" au_modifiers="0" au_pass_to_uo="0"/>
+    <video rec_key="0" rec_modifiers="0" rec_pass_to_uo="0" capture_full_screen="0" x="0" y="0" width="800" height="600"/>
+    <avi fps="10" fcc_type="0" fcc_handler="0" quality="0" key_frame_every="0" bytes_per_second="0" flags="0"/>
+    <titlebar_item type="3" threshold="0"/>
+    <titlebar_item type="5" threshold="0"/>
+    <titlebar_item type="1" threshold="0"/>
+    <titlebar_item type="4" threshold="0"/>
+    <titlebar_item type="77" threshold="10"/>
+    <titlebar_item type="33" threshold="0"/>
+    <titlebar_item type="31" threshold="0"/>
+    <titlebar_item type="34" threshold="10"/>
+    <titlebar_item type="36" threshold="10"/>
+    <titlebar_item type="37" threshold="10"/>
+    <titlebar_item type="38" threshold="10"/>
+    <titlebar_item type="39" threshold="10"/>
+    <titlebar_item type="40" threshold="10"/>
+    <titlebar_item type="41" threshold="10"/>
+    <titlebar_item type="42" threshold="10"/>
+    <titlebar_item type="43" threshold="10"/>
+    <titlebar_item type="45" threshold="10"/>
+    <titlebar_item type="76" threshold="10"/>
+    <titlebar_item type="17" threshold="10"/>
+    <titlebar_item type="25" threshold="10"/>
+    <titlebar_item type="12" threshold="10"/>
+    <titlebar_item type="10" threshold="10"/>
+    <titlebar_item type="13" threshold="10"/>
+    <titlebar_item type="14" threshold="10"/>
+    <colors background="6291456" notmal="16777215" low_items="255" empty_items="8421504" empty_reagents="16777215" full_stats="65280" not_full_stats="65535" low_stats="255"/>
+    <macro_build name="combat" selected="1">
+        <macro name="recall market" key="190" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418982A2" target_id="0x00000000" graphic="0x1F4C" base_id="0x1F4C" color="0x0000" ability_type="32" potion_type="0"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x4185E111" target_id="0x0000601B" graphic="0x1F14" base_id="0x7C96" color="0x07FD" ability_type="158" potion_type="254"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418773E9" target_id="0x00000000" graphic="0x0F06" base_id="0x0F06" color="0x07F2" ability_type="0" potion_type="25"/>
+        </macro>
+        <macro name="magic arrow self" key="54" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="6" convert_type="0" waiting_time="0" value="5"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x018A93D6" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="gh scroll self" key="75" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416C0326" target_id="0x00000000" graphic="0x0E21" base_id="0x0F8C" color="0x0000" ability_type="0" potion_type="0"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x018A93D6" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x8406" ability_type="0" potion_type="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D390E" target_id="0x00000000" graphic="0x1F49" base_id="0x1F55" color="0x0000" ability_type="41" potion_type="0"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x018A93D6" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x8406" ability_type="0" potion_type="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D390E" target_id="0x00000000" graphic="0x1F49" base_id="0x1F49" color="0x0000" ability_type="29" potion_type="0"/>
+        </macro>
+        <macro name="fire field self" key="80" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="5" convert_type="0" waiting_time="0" value="28"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x018A93D6" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="hide" key="0" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="10" convert_type="0" waiting_time="0" value="0"/>
+            <macro_action type="4" convert_type="0" waiting_time="0" value="21"/>
+        </macro>
+        <macro name="track players" key="0" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="10" convert_type="0" waiting_time="0" value="0"/>
+            <macro_action type="4" convert_type="0" waiting_time="0" value="38"/>
+            <macro_action type="8" convert_type="0" waiting_time="0" serial="0x000013A1" target_id="0x00000004" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="wall of stone S" key="66" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x417FE1E4" target_id="0x00000000" graphic="0x1F44" base_id="0x1F44" color="0x0000" ability_type="24" potion_type="0"/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5236" y="4061" z="37" relative_x="0" relative_y="1" relative_z="-1"/>
+        </macro>
+        <macro name="wall of stone E" key="77" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x417FE1E4" target_id="0x00000000" graphic="0x1F44" base_id="0x1F44" color="0x0000" ability_type="24" potion_type="0"/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5237" y="4060" z="37" relative_x="1" relative_y="0" relative_z="-1"/>
+        </macro>
+        <macro name="wall of stone N" key="85" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x417FE1E4" target_id="0x00000000" graphic="0x1F44" base_id="0x1F44" color="0x0000" ability_type="24" potion_type="0"/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5235" y="4057" z="37" relative_x="0" relative_y="-1" relative_z="0"/>
+        </macro>
+        <macro name="wall of stone W" key="84" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x417FE1E4" target_id="0x00000000" graphic="0x1F44" base_id="0x1F44" color="0x0000" ability_type="24" potion_type="0"/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5234" y="4058" z="38" relative_x="-1" relative_y="0" relative_z="1"/>
+        </macro>
+        <macro name="pf S" key="90" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D8162" target_id="0x00000000" graphic="0x1F5B" base_id="0x1F5B" color="0x0000" ability_type="47" potion_type="0"/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5236" y="4061" z="37" relative_x="0" relative_y="1" relative_z="-1"/>
+        </macro>
+        <macro name="pf W" key="81" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D8162" target_id="0x00000000" graphic="0x1F5B" base_id="0x1F5B" color="0x0000" ability_type="47" potion_type="0"/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5235" y="4060" z="37" relative_x="-1" relative_y="0" relative_z="-1"/>
+        </macro>
+        <macro name="pf N" key="69" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D8162" target_id="0x00000000" graphic="0x1F5B" base_id="0x1F5B" color="0x0000" ability_type="47" potion_type="0"/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5236" y="4059" z="37" relative_x="0" relative_y="-1" relative_z="-1"/>
+        </macro>
+        <macro name="pf E" key="67" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D8162" target_id="0x00000000" graphic="0x1F5B" base_id="0x1F5B" color="0x0000" ability_type="47" potion_type="0"/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5237" y="4060" z="37" relative_x="1" relative_y="0" relative_z="-1"/>
+        </macro>
+        <macro name="target self" key="219" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x018A93D6" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="0" potion_type="0"/>
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+        </macro>
+        <macro name="paralyze last" key="189" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416DA702" target_id="0x00000000" graphic="0x1F52" base_id="0x1F52" color="0x0000" ability_type="38" potion_type="0"/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="daemon self" key="127" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x4172CA94" target_id="0x00000000" graphic="0x1F69" base_id="0x1F69" color="0x0000" ability_type="61" potion_type="0"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x018A93D6" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="158" potion_type="58"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416E243C" target_id="0x00000000" graphic="0x1BD4" base_id="0x7E12" color="0x008E" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="daemon last" key="57" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x4172CA94" target_id="0x00000000" graphic="0x1F69" base_id="0x1F69" color="0x0000" ability_type="61" potion_type="0"/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x4000C20E" target_id="0x00000000" graphic="0x1BD4" base_id="0x7E12" color="0x008E" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="fs last" key="55" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x417C235A" target_id="0x00000000" graphic="0x1F5F" base_id="0x1F5F" color="0x0000" ability_type="51" potion_type="0"/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x4000C20E" target_id="0x00000000" graphic="0x1BD4" base_id="0x7E12" color="0x008E" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="light last" key="130" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x417A9381" target_id="0x00000000" graphic="0x1F4A" base_id="0x1F4A" color="0x0000" ability_type="30" potion_type="0"/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="weaken last" key="56" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="6" convert_type="0" waiting_time="0" value="8"/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="paralyze last" key="189" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416DA702" target_id="0x00000000" graphic="0x1F52" base_id="0x1F52" color="0x0000" ability_type="38" potion_type="0"/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="protection self" key="79" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="6" convert_type="0" waiting_time="0" value="15"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x018A93D6" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="158" potion_type="58"/>
+        </macro>
+        <macro name="strength self" key="73" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="6" convert_type="0" waiting_time="0" value="16"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x018A93D6" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="reflect self" key="76" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x4187519A" target_id="0x00000000" graphic="0x1F50" base_id="0x1F50" color="0x0000" ability_type="36" potion_type="0"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x018A93D6" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="bandages self" key="187" modifiers="8" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x417F421A" target_id="0x00000000" graphic="0x0E21" base_id="0x0E21" color="0x0000" ability_type="0" potion_type="0"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x018A93D6" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="dispel last" key="51" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x4182259C" target_id="0x00000000" graphic="0x1F55" base_id="0x1F55" color="0x0000" ability_type="41" potion_type="0"/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="pf last" key="82" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D8162" target_id="0x00000000" graphic="0x1F5B" base_id="0x1F5B" color="0x0000" ability_type="47" potion_type="0"/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="monk self" key="70" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="10" convert_type="0" waiting_time="0" value="0"/>
+            <macro_action type="4" convert_type="0" waiting_time="0" value="48"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x018A93D6" target_id="0x00005000" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="0" potion_type="0"/>
+            <macro_action type="10" convert_type="0" waiting_time="0" value="1"/>
+        </macro>
+        <macro name="wall self" key="86" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418865C3" target_id="0x00000000" graphic="0x1F44" base_id="0x1F44" color="0x0000" ability_type="24" potion_type="0"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x018A93D6" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name="inviz potion" key="112" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x417D7D8A" target_id="0x00000000" graphic="0x0F06" base_id="0x0F06" color="0x07F2" ability_type="0" potion_type="25"/>
+        </macro>
+        <macro name="attack last" key="118" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="10" convert_type="0" waiting_time="0" value="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416EB1E1" target_id="0x00000000" graphic="0x0F0A" base_id="0x0F0A" color="0x0000" ability_type="0" potion_type="16"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x4171F898" target_id="0x0000601F" graphic="0x13FE" base_id="0x605C" color="0x0492" ability_type="255" potion_type="43"/>
+            <macro_action type="7" convert_type="0" waiting_time="0" value="ALL KILL"/>
+            <macro_action type="11" convert_type="3" waiting_time="100" serial="0x00000000" target_id="0x00006020" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0"/>
+            <macro_action type="13" convert_type="0" waiting_time="0"/>
+        </macro>
+        <macro name="wall of stone last" key="49" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D70A8" target_id="0x00000000" graphic="0x1F44" base_id="0x1F44" color="0x0000" ability_type="24" potion_type="0"/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0"/>
+        </macro>
+        <macro name=".flip" key="32" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="7" convert_type="0" waiting_time="0" value=".FLIP"/>
+        </macro>
+    </macro_build>
+    <harvesting key="0" modifiers="0" pass_to_uo="0" show_waypoints="0"/>
+    <crafting selected_skill="0"/>
+    <craft_skill id="0" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="1" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="2" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="3" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="4" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="5" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="6" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="7" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="8" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="9" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="10" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="11" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <common use_scrolls="1"/>
+    <rune_recall_next key="0" modifiers="0" pass_to_uo="0"/>
+    <rune_recall_prev key="0" modifiers="0" pass_to_uo="0"/>
+    <rune_necro_next key="0" modifiers="0" pass_to_uo="0"/>
+    <rune_necro_prev key="0" modifiers="0" pass_to_uo="0"/>
+</data>
