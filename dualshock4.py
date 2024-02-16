@@ -7,6 +7,7 @@ import pyautogui
 import pygame
 
 from imgui_window import State
+from win32_input import PressKey, ReleaseKey
 
 '''
 Dualshock 4 axis mapping:
@@ -70,6 +71,7 @@ KEY_MAP = {
     'R3': 'r,v',
     'L3': 'f'
 }
+VK_K = 0x4B
 
 
 def get_angle(x, y):
@@ -337,12 +339,16 @@ class DS4Controller:
         key = km[alias]
         print(f"BUTTON: {alias} -> {key}")
         if down:
-            pyautogui.keyDown(key)
+            #pyautogui.keyDown(key)
+            PressKey(VK_K)
         else:
             # perform key up for all aliases of this button
+            ReleaseKey(VK_K)
+            '''
             for jm in self.key_maps:
                 if alias in jm:
                     pyautogui.keyUp(jm[alias])
+            '''
 
     def update(self, pygame_events=None):
 
