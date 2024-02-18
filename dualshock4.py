@@ -49,10 +49,10 @@ KEY_MAP = {
     'N': 'd,e',
     'W': 'f,g',
     'E': 'h,i',
-    'SW': ',',
-    'SE': ',',
-    'NE': ',',
-    'NW': ',',
+    #'SW': ',',
+    #'SE': ',',
+    #'NE': ',',
+    #'NW': ',',
 
     'A': 'j,k,l',
     'B': 'm,n,o',
@@ -60,16 +60,16 @@ KEY_MAP = {
     'D': 's,t,u',
 
     'LEFT': 'v,w,x',
-    'UP': 'y,z,F1',
-    'RIGHT': 'F2,F3,F4',
-    'DOWN': 'F5,F6,F7',
+    'UP': 'y,z,f1',
+    'RIGHT': 'f2,f3,f4',
+    'DOWN': 'f5,f6,f7',
 
-    'touch': 'F8,F9',
+    'touch': 'f8,f9',
 
-    'L1': 'F10',
-    'R1': 'F11,F12',
-    'R3': 'F13,F14',
-    'L3': 'F15'
+    'L1': 'f10',
+    'R1': 'f11,f12',
+    'R3': 'f13,f14',
+    'L3': 'f15'
 }
 
 
@@ -261,14 +261,14 @@ class RightStick(Stick):
         if not self.dir or self.ampl < self.dead_zone:
             self.prev_dir = None
             for k in self.keys_down:
-                pyautogui.keyUp(k)
+                ReleaseKey(k)
             self.keys_down.clear()
         elif dir_changed:
             print(f"Right stick: {self.dir}")
             self.prev_dir = self.dir
             k = self.get_stick_mapped_key(layer)
-            if k not in self.keys_down:
-                pyautogui.keyDown(k)
+            if k and k not in self.keys_down:
+                PressKey(k)
                 self.keys_down.add(k)
 
 
