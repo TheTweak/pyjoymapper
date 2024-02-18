@@ -45,33 +45,32 @@ AXIS_MOTION = 1536
 BTN_DOWN = 1539
 BTN_UP = 1540
 KEY_MAP = {
-    'S': 'z,b',
-    'N': 'e,u',
-    'W': 'q,t',
-    'E': 'c,m',
-    'SW': 'a,g',
-    'SE': 'x,n',
-    'NE': 'd,j',
-    'NW': 'w,y',
+    'S': 'b,c',
+    'N': 'd,e',
+    'W': 'f,g',
+    'E': 'h,i',
+    'SW': ',',
+    'SE': ',',
+    'NE': ',',
+    'NW': ',',
 
-    'A': 'k,o,_',
-    'B': 'p,i,+',
-    'C': '3,F11,{',
-    'D': '6,l,}',
+    'A': 'j,k,l',
+    'B': 'm,n,o',
+    'C': 'p,q,r',
+    'D': 's,t,u',
 
-    'LEFT': '9,F16,(',
-    'UP': '8,F17,)',
-    'RIGHT': 'F7,F18,;',
-    'DOWN': '7,F19,:',
+    'LEFT': 'v,w,x',
+    'UP': 'y,z,F1',
+    'RIGHT': 'F2,F3,F4',
+    'DOWN': 'F5,F6,F7',
 
-    'touch': '[,]',
+    'touch': 'F8,F9',
 
-    'L1': '-',
-    'R1': '=,.',
-    'R3': 'r,v',
-    'L3': 'f'
+    'L1': 'F10',
+    'R1': 'F11,F12',
+    'R3': 'F13,F14',
+    'L3': 'F15'
 }
-VK_K = 0x4B
 
 
 def get_angle(x, y):
@@ -340,15 +339,13 @@ class DS4Controller:
         print(f"BUTTON: {alias} -> {key}")
         if down:
             #pyautogui.keyDown(key)
-            PressKey(VK_K)
+            PressKey(key)
         else:
             # perform key up for all aliases of this button
-            ReleaseKey(VK_K)
-            '''
             for jm in self.key_maps:
                 if alias in jm:
-                    pyautogui.keyUp(jm[alias])
-            '''
+                    #pyautogui.keyUp(jm[alias])
+                    ReleaseKey(jm[alias])
 
     def update(self, pygame_events=None):
 
