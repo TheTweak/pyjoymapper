@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data version="0">
+    <widgets oa_geometry="AdnQywADAAAAAARXAAABwAAABw8AAANWAAAEWAAAAd8AAAcOAAADVQAAAAAAAAAAB4AAAARYAAAB3wAABw4AAANV" oa_state="AAAA/wAAAAD9AAAAAAAAArcAAAF3AAAABAAAAAQAAAAIAAAACPwAAAAA" skills_sort_indicator_shown="1" skills_sort_indocator_section="3" skills_sort_indocator_order="1"/>
+    <abysst stay_on_top="1" language="English"/>
+    <misc recount_key="0" recount_modifiers="0" recount_pass_to_uo="0" poison_key="0" poison_modifiers="0" poison_pass_to_uo="0"/>
+    <auto_use name="New build" selected="0" use_percents="1" heal="1" heal_hp="70" heal_delay="100" greater_heal="1" greater_heal_hp="50" greater_heal_delay="100" invis="1" invis_hp="20" invis_delay="100" reactive="1" reactive_hp="50" reactive_delay="100" reflection="1" reflection_hp="20" reflection_delay="100" dragon_meat="1" dragon_meat_hp="50" dragon_meat_delay="100" red_bull="1" red_bull_hp="20" red_bull_delay="100" au_key="0" au_modifiers="0" au_pass_to_uo="0"/>
+    <video rec_key="0" rec_modifiers="0" rec_pass_to_uo="0" capture_full_screen="0" x="0" y="0" width="800" height="600"/>
+    <avi fps="10" fcc_type="0" fcc_handler="0" quality="0" key_frame_every="0" bytes_per_second="0" flags="0"/>
+    <titlebar_item type="2" threshold="10"/>
+    <titlebar_item type="5" threshold="10"/>
+    <titlebar_item type="4" threshold="10"/>
+    <titlebar_item type="3" threshold="10"/>
+    <titlebar_item type="77" threshold="0"/>
+    <titlebar_item type="33" threshold="0"/>
+    <titlebar_item type="31" threshold="0"/>
+    <titlebar_item type="36" threshold="0"/>
+    <titlebar_item type="38" threshold="0"/>
+    <titlebar_item type="39" threshold="0"/>
+    <titlebar_item type="40" threshold="0"/>
+    <titlebar_item type="41" threshold="0"/>
+    <titlebar_item type="43" threshold="0"/>
+    <titlebar_item type="45" threshold="0"/>
+    <titlebar_item type="75" threshold="0"/>
+    <titlebar_item type="14" threshold="0"/>
+    <titlebar_item type="12" threshold="0"/>
+    <titlebar_item type="17" threshold="0"/>
+    <titlebar_item type="25" threshold="0"/>
+    <titlebar_item type="10" threshold="0"/>
+    <colors background="6291456" notmal="16777215" low_items="255" empty_items="8421504" empty_reagents="16777215" full_stats="65280" not_full_stats="65535" low_stats="255"/>
+    <macro_build name="New build" selected="1">
+        <macro name="gh" key="74" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418DAF39" target_id="0x00000000" graphic="0x0E20" base_id="0x0E20" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x4171EF83" target_id="0x00000000" graphic="0x1F49" base_id="0x1F49" color="0x0000" ability_type="29" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x4171EF83" target_id="0x00000000" graphic="0x1F49" base_id="0x1F49" color="0x0000" ability_type="29" potion_type="0" object_name=""/>
+        </macro>
+        <macro name="str" key="77" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="6" convert_type="0" waiting_time="0" value="16"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+        </macro>
+        <macro name="arrow" key="84" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="6" convert_type="0" waiting_time="0" value="5"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+        </macro>
+        <macro name="ff" key="83" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="6" convert_type="0" waiting_time="0" value="28"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+        </macro>
+        <macro name="fs" key="116" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416EE816" target_id="0x00000000" graphic="0x1BD4" base_id="0x7E12" color="0x008E" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418DAF39" target_id="0x00000000" graphic="0x0E20" base_id="0x0E20" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x41708EB0" target_id="0x00000000" graphic="0x1F5F" base_id="0x1F5F" color="0x0000" ability_type="51" potion_type="0" object_name=""/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+        </macro>
+        <macro name="demon" key="89" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416EE816" target_id="0x00000000" graphic="0x1BD4" base_id="0x7E12" color="0x008E" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418DAF39" target_id="0x00000000" graphic="0x0E20" base_id="0x0E20" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x417C46DF" target_id="0x00000000" graphic="0x1F69" base_id="0x1F69" color="0x0000" ability_type="61" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="4" convert_type="0" waiting_time="3000" value="48"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x00005000" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+        </macro>
+        <macro name="paralyze" key="124" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D68D6" target_id="0x00000000" graphic="0x1F52" base_id="0x1F52" color="0x0000" ability_type="38" potion_type="0" object_name=""/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+        </macro>
+        <macro name="pf" key="0" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416EFF50" target_id="0x00000000" graphic="0x1BD4" base_id="0x7E12" color="0x008E" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416F3B85" target_id="0x00000000" graphic="0x1F5B" base_id="0x1F5B" color="0x0000" ability_type="47" potion_type="0" object_name=""/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+        </macro>
+        <macro name="attack" key="114" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D5187" target_id="0x00000000" graphic="0x0F0A" base_id="0x0F0A" color="0x0000" ability_type="0" potion_type="16" object_name=""/>
+            <macro_action type="2" convert_type="1" waiting_time="0" serial="0x416A2853" target_id="0x0000601F" graphic="0x13FE" base_id="0x605C" color="0x0492" ability_type="255" potion_type="50" object_name=""/>
+            <macro_action type="13" convert_type="0" waiting_time="0"/>
+        </macro>
+        <macro name="flip" key="32" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="7" convert_type="0" waiting_time="0" value=".flip"/>
+        </macro>
+        <macro name="dispel" key="81" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418DAF39" target_id="0x00000000" graphic="0x0E20" base_id="0x0E20" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D57DD" target_id="0x00000000" graphic="0x1F55" base_id="0x1F55" color="0x0000" ability_type="41" potion_type="0" object_name=""/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+        </macro>
+        <macro name="weaken" key="86" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="6" convert_type="0" waiting_time="0" value="8"/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x0000601B" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+        </macro>
+        <macro name="invis" key="80" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D4855" target_id="0x00000000" graphic="0x0F06" base_id="0x0F06" color="0x07F2" ability_type="0" potion_type="25" object_name=""/>
+        </macro>
+        <macro name="monk" key="126" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="4" convert_type="0" waiting_time="0" value="48"/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x00005000" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="0" potion_type="0" object_name="thetweak"/>
+        </macro>
+        <macro name="reflect" key="78" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D5387" target_id="0x00000000" graphic="0x1F50" base_id="0x1F50" color="0x0000" ability_type="36" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601B" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+        </macro>
+        <macro name="arena" key="0" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416A19B8" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0494" ability_type="255" potion_type="100" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416A19A1" target_id="0x00000000" graphic="0x1515" base_id="0x1515" color="0x0494" ability_type="0" potion_type="40" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416A1786" target_id="0x00000000" graphic="0x1415" base_id="0x4795" color="0x0498" ability_type="0" potion_type="55" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416A173E" target_id="0x00000000" graphic="0x1411" base_id="0x4797" color="0x0498" ability_type="0" potion_type="55" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416A168C" target_id="0x00000000" graphic="0x1414" base_id="0x479A" color="0x0498" ability_type="0" potion_type="55" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416A1707" target_id="0x00000000" graphic="0x1410" base_id="0x4796" color="0x0498" ability_type="0" potion_type="55" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416A2147" target_id="0x00000000" graphic="0x13D8" base_id="0x7CA3" color="0x0494" ability_type="0" potion_type="100" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416A19EA" target_id="0x00000000" graphic="0x1B78" base_id="0x7D1D" color="0x0494" ability_type="0" potion_type="255" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416A20EE" target_id="0x00000000" graphic="0x1089" base_id="0x7C6F" color="0x0494" ability_type="0" potion_type="100" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416A2110" target_id="0x00000000" graphic="0x1F0B" base_id="0x7CA8" color="0x07F4" ability_type="0" potion_type="100" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416CE79E" target_id="0x00000000" graphic="0x1515" base_id="0x1515" color="0x0487" ability_type="0" potion_type="40" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D0C89" target_id="0x00000000" graphic="0x13FE" base_id="0x605C" color="0x0492" ability_type="255" potion_type="50" object_name=""/>
+        </macro>
+        <macro name="recall delucia" key="121" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D53CB" target_id="0x00000000" graphic="0x1F4C" base_id="0x1F4C" color="0x0000" ability_type="32" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x4170AF3E" target_id="0x0000601B" graphic="0x1F14" base_id="0x7C96" color="0x07FD" ability_type="140" potion_type="254" object_name="Rune to:Delucia"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416D4855" target_id="0x00000000" graphic="0x0F06" base_id="0x0F06" color="0x07F2" ability_type="0" potion_type="25" object_name=""/>
+        </macro>
+        <macro name="bandages" key="0" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x4179854A" target_id="0x00000000" graphic="0x0E21" base_id="0x0E21" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="0" potion_type="0" object_name="thetweak"/>
+        </macro>
+        <macro name="track players" key="0" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="4" convert_type="0" waiting_time="0" value="38"/>
+            <macro_action type="8" convert_type="0" waiting_time="0" serial="0x000013A1" target_id="0x00000004" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+        </macro>
+        <macro name="butcher" key="0" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="0" waiting_time="0" serial="0x416BFFA6" target_id="0x00000000" graphic="0x13F6" base_id="0x13F6" color="0x0000" ability_type="255" potion_type="20" object_name=""/>
+        </macro>
+        <macro name="pf N" key="68" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418DAF39" target_id="0x00000000" graphic="0x0E20" base_id="0x0E20" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416DE72C" target_id="0x00000000" graphic="0x1F5B" base_id="0x1F5B" color="0x0000" ability_type="47" potion_type="0" object_name=""/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5235" y="4061" z="37" relative_x="0" relative_y="-1" relative_z="0"/>
+        </macro>
+        <macro name="pf E" key="72" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418DAF39" target_id="0x00000000" graphic="0x0E20" base_id="0x0E20" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416DE72C" target_id="0x00000000" graphic="0x1F5B" base_id="0x1F5B" color="0x0000" ability_type="47" potion_type="0" object_name=""/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5236" y="4062" z="38" relative_x="1" relative_y="0" relative_z="1"/>
+        </macro>
+        <macro name="pf S" key="66" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418DAF39" target_id="0x00000000" graphic="0x0E20" base_id="0x0E20" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416DE72C" target_id="0x00000000" graphic="0x1F5B" base_id="0x1F5B" color="0x0000" ability_type="47" potion_type="0" object_name=""/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5235" y="4063" z="37" relative_x="0" relative_y="1" relative_z="0"/>
+        </macro>
+        <macro name="pf W" key="70" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418DAF39" target_id="0x00000000" graphic="0x0E20" base_id="0x0E20" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416DE72C" target_id="0x00000000" graphic="0x1F5B" base_id="0x1F5B" color="0x0000" ability_type="47" potion_type="0" object_name=""/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5234" y="4062" z="37" relative_x="-1" relative_y="0" relative_z="0"/>
+        </macro>
+        <macro name="wos N" key="69" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418DAF39" target_id="0x00000000" graphic="0x0E20" base_id="0x0E20" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416AAE9E" target_id="0x00000000" graphic="0x1F44" base_id="0x1F44" color="0x0000" ability_type="24" potion_type="0" object_name=""/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5235" y="4061" z="37" relative_x="0" relative_y="-1" relative_z="0"/>
+        </macro>
+        <macro name="wos E" key="73" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418DAF39" target_id="0x00000000" graphic="0x0E20" base_id="0x0E20" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416AAE9E" target_id="0x00000000" graphic="0x1F44" base_id="0x1F44" color="0x0000" ability_type="24" potion_type="0" object_name=""/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5236" y="4062" z="38" relative_x="1" relative_y="0" relative_z="1"/>
+        </macro>
+        <macro name="wos S" key="67" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418DAF39" target_id="0x00000000" graphic="0x0E20" base_id="0x0E20" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416AAE9E" target_id="0x00000000" graphic="0x1F44" base_id="0x1F44" color="0x0000" ability_type="24" potion_type="0" object_name=""/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5235" y="4063" z="37" relative_x="0" relative_y="1" relative_z="0"/>
+        </macro>
+        <macro name="wos W" key="71" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418077DA" target_id="0x00000000" graphic="0x204E" base_id="0x5392" color="0x0B8B" ability_type="255" potion_type="42" object_name=""/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x418DAF39" target_id="0x00000000" graphic="0x0E20" base_id="0x0E20" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name="thetweak"/>
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x416AAE9E" target_id="0x00000000" graphic="0x1F44" base_id="0x1F44" color="0x0000" ability_type="24" potion_type="0" object_name=""/>
+            <macro_action type="3" convert_type="2" waiting_time="0" target_id="0x0000601B" graphic="0x0000" x="5234" y="4062" z="37" relative_x="-1" relative_y="0" relative_z="0"/>
+        </macro>
+        <macro name="all kill" key="113" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="12" convert_type="0" waiting_time="0"/>
+            <macro_action type="7" convert_type="0" waiting_time="0" value="all kill"/>
+            <macro_action type="11" convert_type="3" waiting_time="0" serial="0x00000000" target_id="0x00006020" graphic="0x0000" base_id="0x0000" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+        </macro>
+    </macro_build>
+    <macro_build name="tutorial">
+        <macro name="bandages self" key="49" modifiers="0" pass_key_to_uo="0">
+            <macro_action type="1" convert_type="1" waiting_time="0" serial="0x4179854A" target_id="0x00000000" graphic="0x0E21" base_id="0x0E21" color="0x0000" ability_type="0" potion_type="0" object_name=""/>
+            <macro_action type="2" convert_type="0" waiting_time="0" serial="0x0001EB1F" target_id="0x0000601F" graphic="0x0190" base_id="0x0000" color="0x0033" ability_type="0" potion_type="0" object_name="thetweak"/>
+        </macro>
+    </macro_build>
+    <harvesting key="0" modifiers="0" pass_to_uo="0" show_waypoints="0"/>
+    <crafting selected_skill="0"/>
+    <craft_skill id="0" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="1" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="2" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="3" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="4" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="5" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="6" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="7" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="8" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="9" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="10" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <craft_skill id="11" resources_chest="0x00000000" result_chest="0x00000000" item_index="0" fixed_items_count="0" items_count="1"/>
+    <common use_scrolls="1"/>
+    <rune_recall_next key="0" modifiers="0" pass_to_uo="0"/>
+    <rune_recall_prev key="0" modifiers="0" pass_to_uo="0"/>
+    <rune_necro_next key="0" modifiers="0" pass_to_uo="0"/>
+    <rune_necro_prev key="0" modifiers="0" pass_to_uo="0"/>
+    <warpack_build name="paladin" resources_chest="0x418BF820" result_chest="0x4171892F" selected="1">
+        <warpack_item name="Ginseng" count="100" used="1"/>
+        <warpack_item name="Garlic" count="100" used="1"/>
+        <warpack_item name="Black Pearl" count="100" used="1"/>
+        <warpack_item name="Mandrake Root" count="100" used="1"/>
+        <warpack_item name="Spider's Silk" count="100" used="1"/>
+        <warpack_item name="Blood Moss" count="100" used="1"/>
+        <warpack_item name="Sulfurous Ash" count="100" used="1"/>
+        <warpack_item name="Nightshade" count="100" used="1"/>
+        <warpack_item name="Eye of Newt" count="50" used="1"/>
+        <warpack_item name="Auto doc potion" count="1" used="0"/>
+        <warpack_item name="Shrink potion" count="1" used="0"/>
+        <warpack_item name="Dedly Poison potion" count="20" used="1"/>
+        <warpack_item name="Total refresh potion" count="1" used="0"/>
+        <warpack_item name="Invisibility potion" count="10" used="1"/>
+        <warpack_item name="Greater heal potion" count="1" used="0"/>
+        <warpack_item name="Total mana refresh potion" count="1" used="0"/>
+        <warpack_item name="Silver fish potion" count="1" used="0"/>
+        <warpack_item name="Golden fish potion" count="1" used="0"/>
+        <warpack_item name="Wall of stone scroll" count="50" used="1"/>
+        <warpack_item name="Energy field scroll" count="1" used="0"/>
+        <warpack_item name="Teleport scroll" count="15" used="1"/>
+        <warpack_item name="Summon daemon scroll" count="50" used="1"/>
+        <warpack_item name="Dispel field scroll" count="30" used="1"/>
+        <warpack_item name="Magic reflection scroll" count="30" used="1"/>
+        <warpack_item name="Manadrain scroll" count="1" used="0"/>
+        <warpack_item name="Lightning scroll" count="1" used="0"/>
+        <warpack_item name="Paralyze scroll" count="35" used="1"/>
+        <warpack_item name="Recall scroll" count="30" used="1"/>
+        <warpack_item name="Mass dispel scroll" count="1" used="0"/>
+        <warpack_item name="Paralyze field scroll" count="50" used="1"/>
+        <warpack_item name="Dispel scroll" count="30" used="1"/>
+        <warpack_item name="Flamestrike scroll" count="50" used="1"/>
+        <warpack_item name="Greater heal scroll" count="100" used="1"/>
+        <warpack_item name="Raw dragon meat" count="5" used="1"/>
+        <warpack_item name="Bloody bandage" count="1" used="0"/>
+        <warpack_item name="Clean bandage" count="100" used="1"/>
+        <warpack_item name="Tobacco cigar" count="10" used="1"/>
+    </warpack_build>
+</data>
